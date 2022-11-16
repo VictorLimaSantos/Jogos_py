@@ -3,8 +3,9 @@ print("*********************************")
 print("***Bem vindo ao jogo da Forca!***")
 print("*********************************")
 
+jogo = True
 #Define o tema
-while True:
+while jogo :
 
     print("Escolha um tema:")
     print("1- Objetos")
@@ -48,25 +49,46 @@ while True:
 
 #Chuetes do usuario
     print ("digite uma letra")
+    
+    letra_acertadas=[]
 
     while chances >0:
         chute = input()
         chute = chute.strip().lower()
+        letra_acertadas.append(chute)
+
 #chute certo
         if chute in palavra_seceta:
-            print (f"A palavra secreta possui {chute}")
+            print (f"A palavra secreta possui '{chute}'")
             index = 0
             for letra in palavra_seceta:
                 if chute == letra:
                     chutes_certos[index] = letra
                 index += 1 
             print(chutes_certos)
+
 #chutes errado
         else:
-            print(f"A palavra secreta nao possui {chute}\n      Tente de novo")
+            print(f"A palavra secreta nao possui '{chute}'\n      Tente de novo")
+            letra_acertadas.remove(chute)
             chances -= 1
         print(f"digite uma nova letra\nAgora você possui {chances} chances")
 
-#conferindo palavra correta
-    print(palavra_seceta)
-    break
+# Validando se palavra secreta esta correta
+        temp = ""
+        for count in palavra_seceta:
+            if count in letra_acertadas:
+                temp += count
+
+        if temp == palavra_seceta:
+            print("vc ganhou!")
+            break
+
+        if chances == 0:
+            print("voce perdeu")
+
+    jogo = int(input("Deseja jovar novamente:\n 1- sim \n 2- não"))
+    if jogo == 1:
+        jogo = True
+    else:
+        jogo = False
