@@ -87,6 +87,7 @@ while jogo :
         if chances == 0:
             print("voce perdeu")
 
+#continuar o jogo
     jogo = int(input("Deseja jovar novamente:\n 1- sim \n 2- não"))
     if jogo == 1:
         jogo = True
